@@ -30,19 +30,19 @@ public class IdawiWebSerializer extends JasetoSerializer {
 				return super.classname(o);
 			}
 
-			@Override
-			public Node createNode(Object o) {
-				if (o instanceof Route) {
-					return new ArrayNode(((Route) o).components().stream().map(c -> c.toString()).toArray(), this);
-				} else if (o instanceof URLContentException) {
-					var node = new ThrowableNode(o, this);
-					node.removeKey(ThrowableNode.STACK_TRACE);
-					return node;
-				} else if (o instanceof Component) {
-					return toNode(o.toString());
+			//@Override
+	public Node alter(Node n) {
+				if (!n.path().equals(".content")) {
+					// n.removeKey("#class");
 				}
 
-				return super.createNode(o);
+				/*
+				 * if (//n.value instanceof Collection) { var on = (ObjectNode) n; var elements
+				 * = (ArrayNode) on.map.remove("elements"); elements.children.forEach(c ->
+				 * on.map.put("", c)); }
+				 */
+
+				return n;
 			}
 
 		});

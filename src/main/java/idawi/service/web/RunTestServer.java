@@ -13,7 +13,8 @@ import idawi.transport.Topologies;
 public class RunTestServer {
 
 	public static void main(String[] args) throws Throwable {
-		int n = 3;
+		int n = 5;
+
 		var components = new ArrayList<Component>();
 		components.addAll(Component.createNComponent(n));
 		components.forEach(c -> new DemoService(c));
@@ -23,7 +24,8 @@ public class RunTestServer {
 				components, new Random());
 
 		for (int i = 0; i < n; ++i) {
-			components.get(i).friendlyName = "c" + i;
+			components.add(new Component("Component" + i));
+
 		}
 
 		var gateway = components.getFirst();
